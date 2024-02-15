@@ -1,0 +1,43 @@
+.container {
+    height: 100vh;
+    width: 100vh;
+}
+
+.example-tree-invisible {
+    display: none;
+}
+
+.example-tree ul,
+.example-tree li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+}
+
+/*
+   * This padding sets alignment of the nested nodes.
+   */
+.example-tree .mat-nested-tree-node div[role=group] {
+    padding-left: 30px;
+}
+
+.mat-tree-node {
+    font-size: 15px;
+
+}
+
+.crud {
+    font-size: 15px;
+}
+
+.example-tree div[role=group]>.mat-tree-node {
+    padding-left: 30px;
+}
+
+.visible-data {
+    background-color: #78909c;
+}
+
+.hidden-data {
+    background-color: #00acc1;
+}
