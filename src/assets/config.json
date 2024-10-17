@@ -1,0 +1,9 @@
+{
+
+    "BASE_URL": "http://10.10.10.40:8080/jewel-buyer",
+    "BUYER_URL": "/buyer",
+    "CART_URL":"/cart" ,
+    "PRODUCT_URL":"/products",
+    "PURCHASE_URL":"/purchase"
+
+}

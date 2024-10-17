@@ -1,140 +1,22 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>
-      <span [style.paddingLeft.px]="40"> Name </span>
-    </th>
-    <td mat-cell *matCellDef="let data">
-      <button mat-icon-button [style.visibility]="!data.expandable ? 'hidden' : ''"
-        [style.marginLeft.px]="data.level * 32" (click)="treeControl.toggle(data)">
-        <mat-icon class="mat-icon-rtl-mirror">
-          {{treeControl.isExpanded(data) ? 'expand_more' : 'chevron_right'}}
-        </mat-icon>
-      </button>
 
-      {{data.name }}
+<!-- <div id="g_id_onload"
+     data-client_id="860419357187-0rji6hlcv00ohib75icmonn16g48knid.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-login_uri="http://localhost:4200"
+     data-itp_support="true">
+</div>
 
-    </td>
-  </ng-container>
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="rectangular"
+     data-theme="filled_blue"
+     data-text="signin_with"
+     data-size="large"
+     data-logo_alignment="left">
+</div> -->
+<!-- <div id="google-btn">
 
-  <ng-container>
+</div> -->
 
-
-    <ng-container matColumnDef="create">
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox (change)="onHeaderCheckboxChange($event, headerPrivilegesState.create, 'create')"
-          [checked]="headerPrivilegesState.create" [indeterminate]="this.interminateState.create">
-          Create
-        </mat-checkbox>
-
-      </th>
-      <td mat-cell *matCellDef="let data">
-        <mat-checkbox *ngIf="!treeControl.isExpandable(data)" [checked]="data.privileges.create"
-          (click)="$event.stopPropagation()" (change)="togglePrivilege(data, 'create')"></mat-checkbox>
-        {{ data.privileges.create }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="read">
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox (change)="onHeaderCheckboxChange($event, headerPrivilegesState.read, 'read')"
-          [checked]="headerPrivilegesState.read" [indeterminate]="this.interminateState.read">Read</mat-checkbox>
-      </th>
-      <td mat-cell *matCellDef="let data">
-        <mat-checkbox *ngIf="!treeControl.isExpandable(data)" [checked]="data.privileges.read"
-          (click)="$event.stopPropagation()" (change)="togglePrivilege(data, 'read')"></mat-checkbox>
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="update">
-      <th mat-header-cell *matHeaderCellDef><mat-checkbox
-          (change)="onHeaderCheckboxChange($event, headerPrivilegesState.update, 'update')"
-          [checked]="headerPrivilegesState.update" [indeterminate]="this.interminateState.update"> Update
-        </mat-checkbox>
-      </th>
-      <td mat-cell *matCellDef="let data">
-        <mat-checkbox *ngIf="!treeControl.isExpandable(data)" [checked]="data.privileges.update"
-          (click)="$event.stopPropagation()" (change)="togglePrivilege(data, 'update')"></mat-checkbox>
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef><mat-checkbox
-          (change)="onHeaderCheckboxChange($event, headerPrivilegesState.delete, 'delete')"
-          [checked]="headerPrivilegesState.delete" [indeterminate]="this.interminateState.delete">Delete </mat-checkbox>
-      </th>
-      <td mat-cell *matCellDef="let data">
-        <mat-checkbox *ngIf="!treeControl.isExpandable(data)" [checked]="data.privileges.delete"
-          (click)="$event.stopPropagation()" (change)="togglePrivilege(data, 'delete')"></mat-checkbox>
-      </td>
-    </ng-container>
-
-  </ng-container>
-
-
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-
-
-<!--<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">-->
-<!--  &lt;!&ndash; This is the tree node template for leaf nodes &ndash;&gt;-->
-<!--  <mat-tree-node class="child" *matTreeNodeDef="let node" matTreeNodeToggle fxLayoutAlign="start center" style="margin-left: 44px" fxLayoutGap="10px">-->
-<!--    <div fxFlex="20%" >-->
-<!--      {{ node.name }}-->
-<!--    </div>-->
-
-<!--    <div fxFlex="80%" fxLayout="column" >-->
-<!--      <div class="crud"   fxLayoutGap="15px"  *ngIf=" node.children && showCrud(node)">-->
-<!--        &lt;!&ndash;      <div class="crud"   fxLayoutGap="15px"  *ngIf=" node.children">&ndash;&gt;-->
-<!--        <span>Create</span>-->
-<!--        <span>Read</span>-->
-<!--        <span>Update</span>-->
-<!--        <span>Delete</span>-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <section class="example-section" fxLayoutGap="16px grid" >-->
-<!--          <mat-checkbox class="example-margin" [(ngModel)]="node.create" (change)="calculateTotalPrivilege(node)"></mat-checkbox>-->
-<!--          <mat-checkbox class="example-margin" [(ngModel)]="node.read" (change)="calculateTotalPrivilege(node)"></mat-checkbox>-->
-<!--          <mat-checkbox class="example-margin" [(ngModel)]="node.update" (change)="calculateTotalPrivilege(node)"></mat-checkbox>-->
-<!--          <mat-checkbox class="example-margin" [(ngModel)]="node.delete" (change)="calculateTotalPrivilege(node)"></mat-checkbox>-->
-<!--          &lt;!&ndash;          <mat-checkbox class="example-margin" [(ngModel)]="node.crud" (change)="calculateTotalPrivilege(node)"></mat-checkbox>&ndash;&gt;-->
-<!--        </section>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </mat-tree-node>-->
-
-<!--  <mat-nested-tree-node class="parent" *matTreeNodeDef="let node; when: hasChild">-->
-<!--    <div class="mat-tree-node">-->
-<!--      <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">-->
-<!--        <mat-icon class="mat-icon-rtl-mirror">-->
-<!--          {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}-->
-<!--        </mat-icon>-->
-<!--      </button>-->
-<!--      {{ node.name }}-->
-<!--    </div>-->
-
-
-<!--    <div fxFlex="74%" *ngIf="node.parentId===null && node.children.length===0 && treeControl.isExpanded(node) " style="margin-left: 150px">-->
-<!--      <div class="crud"  fxLayoutGap="15px"  *ngIf=" node.children && showCrud(node)">-->
-<!--        <span>Create</span>-->
-<!--        <span>Read</span>-->
-<!--        <span>Update</span>-->
-<!--        <span>Delete</span>-->
-<!--      </div>-->
-<!--      <div >-->
-<!--        <section class="example-section" fxLayoutGap="16px grid">-->
-<!--          <mat-checkbox class="example-margin" [(ngModel)]="node.create" (change)="calculateTotalPrivilege(node)"></mat-checkbox>-->
-<!--          <mat-checkbox class="example-margin" [(ngModel)]="node.read" (change)="calculateTotalPrivilege(node)"></mat-checkbox>-->
-<!--          <mat-checkbox class="example-margin" [(ngModel)]="node.update" (change)="calculateTotalPrivilege(node)"></mat-checkbox>-->
-<!--          <mat-checkbox class="example-margin" [(ngModel)]="node.delete" (change)="calculateTotalPrivilege(node)"></mat-checkbox>-->
-
-<!--        </section>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div *ngIf="treeControl.isExpanded(node)" role="group">-->
-<!--      <ng-container matTreeNodeOutlet>-->
-
-<!--        <div *ngIf="isChildren(node) && node.parentId !== null">Total Privilege: {{ node.totalPrivilege }}</div>-->
-<!--      </ng-container>-->
-<!--    </div>-->
-<!--  </mat-nested-tree-node>-->
-<!--</mat-tree>-->
+<router-outlet />

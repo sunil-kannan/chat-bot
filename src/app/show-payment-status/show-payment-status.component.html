@@ -1,0 +1,9 @@
+<p>show-payment-status!
+</p>
+    <div *ngIf="paymentStatus">
+            Status: {{status}} <br>
+            Transaction Id: {{trn_id}}
+    </div>
+    <div *ngIf="!paymentStatus">
+        Loading...
+    </div>

@@ -1,0 +1,18 @@
+<div style="margin: 250px;" >
+
+    <button class="btn btn-primary" (click)="ClickToPay()">Click to Pay</button>
+
+
+</div>
+
+
+
+<div *ngIf="loading">
+    Loading... Waiting for payment Success... If you want to make the payment again, Please refresh the page.
+</div>
+
+<div *ngIf="status !=''">
+    Status: {{status}}<br>
+    Transaction Id: {{trn_id}}
+    
+</div>
